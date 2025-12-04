@@ -17,9 +17,7 @@ import { verifyToken } from "./middleware/auth.middleware.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-dotenv.config({
-  path: path.join(__dirname, ".env"),
-});
+dotenv.config({ path: path.join(__dirname, ".env") });
 
 const app = express();
 app.use(cors());
@@ -38,19 +36,19 @@ app.get("/api/protected", verifyToken, (req, res) => {
 const clientBuildPath = path.join(__dirname, "client", "dist");
 app.use(express.static(clientBuildPath));
 
-app.get("*", (req, res) => {
+app.get("/*", (req, res) => {
   res.sendFile(path.join(clientBuildPath, "index.html"));
 });
 
+const PORT = process.env.PORT || config.port || 5000;
+
 mongoose
   .connect(config.mongoUri)
-  .then(() => console.log("Connected to MongoDB Atlas"))
+  .then(() => {
+    console.log("Connected to MongoDB Atlas");
+    app.listen(PORT, () => console.info(`Server started on port ${PORT}`));
+  })
   .catch((err) => {
     console.error("MongoDB connection error:", err);
     process.exit(1);
   });
-
-const PORT = process.env.PORT || config.port || 5000;
-app.listen(PORT, () => {
-  console.info(`Server started on port ${PORT}`);
-});
