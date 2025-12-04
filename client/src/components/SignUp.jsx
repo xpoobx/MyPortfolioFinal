@@ -28,7 +28,7 @@ export default function SignUp() {
       navigate("/contacts");
     } catch (err) {
       console.error(err);
-      alert("Signup failed. Check the console.");
+      alert("Signup failed. Check the console..");
     }
   };
 
