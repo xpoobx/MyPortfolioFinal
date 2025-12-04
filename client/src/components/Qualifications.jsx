@@ -17,7 +17,7 @@ export default function Qualifications() {
   useEffect(() => {
     loadData();
   }, []);
- 
+
   return (
     <div className="qualifications">
       <h2 className="qualifications-title">My Qualifications</h2>
