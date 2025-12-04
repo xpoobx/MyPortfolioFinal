@@ -36,10 +36,9 @@ app.get("/api/protected", verifyToken, (req, res) => {
 const clientBuildPath = path.join(__dirname, "client", "dist");
 app.use(express.static(clientBuildPath));
 
-app.get("/*", (req, res) => {
+app.get(/.*/, (req, res) => {
   res.sendFile(path.join(clientBuildPath, "index.html"));
 });
-
 const PORT = process.env.PORT || config.port || 5000;
 
 mongoose
