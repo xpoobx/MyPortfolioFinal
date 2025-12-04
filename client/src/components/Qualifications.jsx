@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import "./Qualifications.css"; 
 
 export default function Qualifications() {
   const [items, setItems] = useState([]);
