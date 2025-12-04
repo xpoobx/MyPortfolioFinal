@@ -6,7 +6,7 @@ export default function Qualifications() {
 
   const loadData = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/qualifications");
+      const res = await fetch("/api/qualifications");
       const data = await res.json();
       setItems(data);
     } catch (err) {

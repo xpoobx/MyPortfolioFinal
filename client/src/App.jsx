@@ -5,11 +5,11 @@ import "./App.css";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import Contact from "./components/Contact";
-import Projects from "./components/Projects"; // Public projects page
-import ProjectsCRUD from "./admin/ProjectsCRUD"; // Admin CRUD
-import QualificationsCRUD from "./admin/QualificationsCRUD"; // Admin CRUD
-import UsersCRUD from "./admin/UsersCRUD"; // Admin CRUD
-import Qualifications from "./components/Qualifications"; // Public-facing
+import Projects from "./components/Projects"; 
+import ProjectsCRUD from "./admin/ProjectsCRUD"; 
+import QualificationsCRUD from "./admin/QualificationsCRUD"; 
+import UsersCRUD from "./admin/UsersCRUD"; 
+import Qualifications from "./components/Qualifications"; 
 import Admin from "./components/Admin";
 import ContactsCRUD from "./admin/ContactsCRUD";
 import { AuthProvider, AuthContext } from "./context/AuthContext";

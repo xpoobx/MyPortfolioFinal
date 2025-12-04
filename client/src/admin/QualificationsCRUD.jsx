@@ -1,7 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 
-const API = import.meta.env.VITE_API_URL || "http://localhost:3000";
+// Use relative paths so it works both locally and in production
+const API = "/api";
 
 export default function QualificationsCRUD() {
   const { token, role } = useContext(AuthContext);
@@ -20,7 +21,9 @@ export default function QualificationsCRUD() {
 
   const fetchQualifications = async () => {
     try {
-      const res = await fetch(`${API}/api/qualifications`);
+      const res = await fetch(`${API}/qualifications`, {
+        headers: token ? { Authorization: `Bearer ${token}` } : {}
+      });
       const data = await res.json();
       setQualifications(data);
     } catch (err) {
@@ -41,8 +44,8 @@ export default function QualificationsCRUD() {
     try {
       const method = editingId ? "PUT" : "POST";
       const url = editingId
-        ? `${API}/api/qualifications/${editingId}`
-        : `${API}/api/qualifications`;
+        ? `${API}/qualifications/${editingId}`
+        : `${API}/qualifications`;
 
       const res = await fetch(url, {
         method,
@@ -79,7 +82,7 @@ export default function QualificationsCRUD() {
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this qualification?")) return;
     try {
-      const res = await fetch(`${API}/api/qualifications/${id}`, {
+      const res = await fetch(`${API}/qualifications/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` }
       });

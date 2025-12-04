@@ -8,7 +8,7 @@ export default function ContactsCRUD() {
 
   useEffect(() => {
     if (role === "admin") {
-      fetch("http://localhost:3000/api/contacts", {
+      fetch("/api/contacts", {
         headers: { Authorization: `Bearer ${token}` }
       })
         .then(res => res.json())

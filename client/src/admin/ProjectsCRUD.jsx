@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 
-const API_URL = import.meta.env.VITE_API_URL;
+const API = "/api";
 
 export default function ProjectsCRUD() {
   const { token, role } = useContext(AuthContext);
@@ -20,14 +20,16 @@ export default function ProjectsCRUD() {
   if (role !== "admin") return <p>Admin only</p>;
 
   const fetchProjects = async () => {
-    try {
-      const res = await fetch(`${API_URL}/api/projects`);
-      const data = await res.json();
-      setProjects(data);
-    } catch (err) {
-      console.error("Error fetching projects:", err);
-    }
-  };
+  try {
+    const res = await fetch(`${API}/projects`, {
+      headers: token ? { Authorization: `Bearer ${token}` } : {}
+    });
+    const data = await res.json();
+    setProjects(data);
+  } catch (err) {
+    console.error("Error fetching projects:", err);
+  }
+};
 
   useEffect(() => {
     fetchProjects();

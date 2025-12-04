@@ -19,7 +19,7 @@ export default function Contact() {
     setSuccess("");
 
     try {
-      const res = await fetch("http://localhost:3000/api/contacts", {
+      const res = await fetch("/api/contacts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

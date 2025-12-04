@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+const API = "/api"; // relative path works locally & in production
 
 export default function UsersCRUD() {
   const { token, role } = useContext(AuthContext);
@@ -18,7 +18,10 @@ export default function UsersCRUD() {
 
   const fetchUsers = async () => {
     try {
-      const res = await fetch(`${API_URL}/api/users`);
+      const res = await fetch(`${API}/users`, {
+        headers: token ? { Authorization: `Bearer ${token}` } : {}
+      });
+      if (!res.ok) throw new Error("Failed to fetch users");
       const data = await res.json();
       setUsers(data);
     } catch (err) {
@@ -39,8 +42,8 @@ export default function UsersCRUD() {
     try {
       const method = editingId ? "PUT" : "POST";
       const url = editingId
-        ? `${API_URL}/api/users/${editingId}`
-        : `${API_URL}/api/users`;
+        ? `${API}/users/${editingId}`
+        : `${API}/users`;
 
       const res = await fetch(url, {
         method,
@@ -79,7 +82,7 @@ export default function UsersCRUD() {
     if (!window.confirm("Delete this user?")) return;
 
     try {
-      const res = await fetch(`${API_URL}/api/users/${id}`, {
+      const res = await fetch(`${API}/users/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` }
       });
