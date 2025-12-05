@@ -41,6 +41,10 @@ return (
 <p>Hello, my name is Dante, and I am passionate about Software Engineering and Web Design. I started the Software Engineering Technology course 
     at Centennial College last year, and am currently in my 3rd semester. I am currently really excited to further hone my skills in coding as 
     I test my skills on outside projects as well as in the classroom.</p>
+
+    {/* NEW paragraph for CI/CD demo */}
+      <p>I am currently exploring new frontend frameworks and enhancing my React skills!</p>
+      
 <a href="/resume.pdf" target="_blank" rel="noreferrer">Resume</a>
 </div>
 );
